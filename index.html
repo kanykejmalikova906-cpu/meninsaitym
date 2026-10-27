@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Менин сайтым — Интернет дүкөн</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="#" class="logo">🛍️ Менин сайтым</a>
+
+        <nav>
+            <a href="#bashy">Башкы бет</a>
+            <a href="#tovarlar">Товарлар</a>
+            <a href="#biz-jonundo">Биз жөнүндө</a>
+        </nav>
+
+        <button class="cart-button" id="cartButton">
+            🛒 Себет <span id="cartCount">0</span>
+        </button>
+    </header>
+
+    <main>
+        <section class="hero" id="bashy">
+            <div class="hero-content">
+                <span class="tag">✨ Биздин дүкөнгө кош келиңиз!</span>
+                <h1>Сүйүктүү товарыңды <span>тап!</span></h1>
+                <p>Сапаттуу товарлар, сонун баалар жана жагымдуу маанай — баары бир жерде.</p>
+                <a href="#tovarlar" class="main-button">Соода баштоо →</a>
+            </div>
+            <div class="hero-image">🛍️</div>
+        </section>
+
+        <section class="shop" id="tovarlar">
+            <div class="section-heading">
+                <div>
+                    <span class="tag">Биздин тандоо</span>
+                    <h2>Популярдуу товарлар</h2>
+                </div>
+                <p>Өзүңө жакканын танда 💜</p>
+            </div>
+
+            <div class="filters">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="🔍 Товар издөө..."
+                    aria-label="Товар издөө"
+                >
+
+                <select id="categoryFilter" aria-label="Категория тандоо">
+                    <option value="Баары">Бардык товарлар</option>
+                    <option value="Электроника">Электроника</option>
+                    <option value="Кийим">Кийимдер</option>
+                    <option value="Аксессуар">Аксессуарлар</option>
+                </select>
+            </div>
+
+            <div class="products" id="products"></div>
+            <p class="empty-message" id="emptyMessage" hidden>
+                😔 Бул товар табылган жок.
+            </p>
+        </section>
+
+        <section class="about" id="biz-jonundo">
+            <h2>💜 Эмне үчүн бизди тандашат?</h2>
+            <div class="benefits">
+                <div>🚚 <h3>Ыңгайлуу жеткирүү</h3><p>Товарларыңды ыңгайлуу жол менен ал.</p></div>
+                <div>⭐ <h3>Сапаттуу товарлар</h3><p>Ар бир товарга көңүл бурабыз.</p></div>
+                <div>💬 <h3>Жакшы тейлөө</h3><p>Суроолоруңа жооп берүүгө даярбыз.</p></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Менин сайтым. Бардык укуктар корголгон.</p>
+        <p>Сүйүү менен жасалды 💜</p>
+    </footer>
+
+    <div class="cart-overlay" id="cartOverlay">
+        <section class="cart-panel" role="dialog" aria-modal="true"
+                 aria-labelledby="cartTitle">
+            <div class="cart-heading">
+                <h2 id="cartTitle">🛒 Менин себетим</h2>
+                <button id="closeCart" class="close-button"
+                        aria-label="Себетти жабуу">✕</button>
+            </div>
+
+            <div id="cartItems" class="cart-items"></div>
+
+            <div class="cart-bottom">
+                <h3>Жалпы сумма: <span id="cartTotal">0</span> сом</h3>
+                <<button id="checkoutButton" class="main-button" type="button">
+
+    🛍️ Буйрутма берүү
+
+</button>
+                <p class="small-note">Демо-сайт: төлөм чыныгы эмес.</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+
+<div class="cart-overlay" id="orderOverlay" hidden>
+    <section class="cart-panel order-panel"
+
+             role="dialog"
+
+             aria-modal="true"
+
+             aria-labelledby="orderTitle">
+
+        <div class="cart-heading">
+
+            <h2 id="orderTitle">📦 Буйрутма берүү</h2>
+
+            <button type="button" id="closeOrder"
+
+                    class="close-button"
+
+                    aria-label="Жабуу">✕</button>
+
+        </div>
+
+        <form id="orderForm" class="order-form">
+
+            <p>Маалыматтарыңды толтур.</p>
+
+            <label for="customerName">Аты-жөнүң</label>
+
+            <input id="customerName" name="customerName"
+
+                   type="text"
+
+                   placeholder="Аты-жөнүңдү жаз"
+
+                   autocomplete="name"
+
+                   required minlength="2">
+
+            <label for="customerPhone">Телефон номери</label>
+
+            <input id="customerPhone" name="customerPhone"
+
+                   type="tel"
+
+                   placeholder="+996 700 123 456"
+
+                   autocomplete="tel"
+
+                   required>
+
+            <label for="customerAddress">Жеткирүү дареги</label>
+
+            <textarea id="customerAddress" name="customerAddress"
+
+                      placeholder="Шаар, көчө, үйдүн номери"
+
+                      autocomplete="street-address"
+
+                      rows="3" required></textarea>
+
+            <label for="customerNote">
+
+                Кошумча билдирүү (милдеттүү эмес)
+
+            </label>
+
+            <textarea id="customerNote" name="customerNote"
+
+                      placeholder="Кошумча каалооң болсо жаз..."
+
+                      rows="2"></textarea>
+
+            <div class="order-summary">
+
+                <span>Жалпы сумма:</span>
+
+                <strong><span id="orderTotal">0</span> сом</strong>
+
+            </div>
+
+            <button type="submit" class="main-button order-submit">
+
+                Буйрутманы ырастоо
+
+            </button>
+
+            <p class="small-note">
+
+                Бул демо-сайт. Буйрутма чыныгы дүкөнгө жөнөтүлбөйт.
+
+            </p>
+
+        </form>
+
+        <div id="orderSuccess" class="order-success" hidden>
+
+            <h3>🎉 Буйрутма даярдалды!</h3>
+
+            <p id="orderMessage"></p>
+
+            <button type="button" id="finishOrder"
+
+                    class="main-button">Жабуу</button>
+
+        </div>
+
+    </section>
+
+</div>
+<<button id="checkoutButton" type="button" class="main-button">
+
+    🛍️ Буйрутма берүү
+
+</button>
+ <!-- буйрутма формасынын аягы -->
+
+    <script src="script.js"></script>
+</body>
+</html>
